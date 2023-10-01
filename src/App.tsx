@@ -3,7 +3,8 @@ import {Route, Routes} from "react-router-dom";
 import Home from "./Home/Home.tsx";
 import Login from "./Login/Login.tsx";
 import Register from "./Register/Register.tsx";
-import Stage from "./Stage/Stage.tsx";
+import Level from "./Level/Level.tsx";
+import Question from "./Question/Question.tsx";
 
 function App() {
 
@@ -13,8 +14,12 @@ function App() {
             <Route path='login' element={<Login/>}/>
             <Route path='register' element={<Register/>}/>
             <Route
-                path="stage/:id"
-                element={<Stage/>}
+                path="level/:id"
+                element={<Level/>}
+            />
+            <Route
+                path="level/question/:id"
+                element={<Question/>}
             />
         </Routes>
     );
