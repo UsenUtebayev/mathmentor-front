@@ -29,7 +29,7 @@ export default function Level() {
             <div className={"flex rounded-2xl p-6"}>
                 {
                     data.questions && data.questions.map((iid) => (
-                        <a href={`question/${iid}`}
+                        <a href={`question/${iid}`} key={iid}
                            className={"p-5 rounded-xl bg-blue-500 hover:bg-blue-700 font-bold transition-colors"}>
                             <span className={"text-white text-3xl"}>{iid}</span>
                         </a>
