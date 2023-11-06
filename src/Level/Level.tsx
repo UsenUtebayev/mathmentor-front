@@ -4,7 +4,7 @@ import {apiUrl} from "../constants.ts";
 import axios from "axios";
 
 export default function Level() {
-    const [data, setData] = useState({})
+    const [data, setData] = useState([])
     const {id} = useParams()
     const navigate = useNavigate();
 
@@ -12,8 +12,9 @@ export default function Level() {
     const handleClick = () => {
         navigate("/");
     }
+
     useEffect(() => {
-        axios.get(`${apiUrl}/level/${id}`)
+        axios.get(`${apiUrl}/question/?level_id=1`)
             .then((response) => {
                 setData(response.data)
 
@@ -22,16 +23,19 @@ export default function Level() {
                 console.log(error)
             });
 
+
     }, [id]);
+
+    let temp = JSON.parse(localStorage.getItem('getted_levels'))
 
     return (
         <main className="flex flex-col">
             <div className={"flex rounded-2xl p-6"}>
                 {
-                    data.questions && data.questions.map((iid) => (
-                        <a href={`question/${iid}`} key={iid}
-                           className={"p-5 rounded-xl bg-blue-500 hover:bg-blue-700 font-bold transition-colors"}>
-                            <span className={"text-white text-3xl"}>{iid}</span>
+                    data.map((iid) => (
+                        <a href={`question/${iid.id}`} key={iid.id}
+                           className={`${temp.includes(iid.id) ? 'p-5 rounded-xl bg-blue-500 hover:bg-blue-700 font-bold transition-colors' : 'p-5 rounded-xl bg-gray-600 font-bold transition-colors pointer-events-none'}`}>
+                            <span className={"text-white text-3xl"}>{iid.id}</span>
                         </a>
                     ))
                 }

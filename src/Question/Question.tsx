@@ -7,25 +7,29 @@ export default function Question() {
     const navigate = useNavigate();
     const [data, setData] = useState()
     const {id} = useParams()
-    const [clickedValue, setClickedValue] = useState()
+
+    const handleClick = (value) => {
+        if (value == data.right_answer) {
+
+            let temp: Array<any> = JSON.parse(localStorage.getItem('getted_levels'))
+            if (data.pk in temp) {
+
+            } else {
+                temp.push(data.pk + 1)
+                localStorage.setItem('getted_levels', JSON.stringify(temp))
+            }
+
+            window.location.href = `/level/question/${+id + 1}`;
+
+        }
+    };
+
     useEffect(() => {
         axios.get(`${apiUrl}/question/${id}/get_question_instance/`).then(response => {
             setData(response.data)
         })
 
     }, [])
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
-    function checkAnswer(value) {
-        console.log(value)
-    }
-
 
     return <>
         <div className="flex flex-col">
@@ -34,7 +38,9 @@ export default function Question() {
                 <ul>
                     <li>
                         {data && data.answers.map((item, index) => (
-                            <button onClick={checkAnswer} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl m-10" key={index}>{item}</button>
+                            <button onClick={() => handleClick(item)}
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl m-10"
+                                    key={index}>{item}</button>
                         ))}
                     </li>
                 </ul>

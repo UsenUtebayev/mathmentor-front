@@ -19,6 +19,9 @@ export default function Home() {
             const token = localStorage.getItem('auth_token')
             if (token == null) navigate('/login')
         }
+        if (localStorage.getItem('getted_levels') == null) {
+            localStorage.setItem('getted_levels', JSON.stringify([1]))
+        }
         axios.get(`${apiUrl}/level/`)
             .then((response) => {
                 setData(response.data)
