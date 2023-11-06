@@ -1,52 +1,43 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {apiUrl} from "../constants.ts";
 
 export default function Question() {
     const navigate = useNavigate();
     const [data, setData] = useState()
-    const [wrongAnswer, setWrongAnswer] = useState()
-    const [rightAnswer, setRightAnswer] = useState()
-
-
     const {id} = useParams()
-
+    const [clickedValue, setClickedValue] = useState()
     useEffect(() => {
-        axios.get(`${apiUrl}/question/${id}`).then(response => {
+        axios.get(`${apiUrl}/question/${id}/get_question_instance/`).then(response => {
             setData(response.data)
-            return axios.get(`${apiUrl}/wrong_answer/?question=${id}`)
-        }).then(response => {
-            setWrongAnswer(response.data)
         })
-    }, []);
 
-    useEffect(() => {
-        if (data && data.right_answer) {
-            axios.get(`${apiUrl}/right_answer/${data.right_answer}`)
-                .then(response => {
-                    setRightAnswer(response.data);
-                })
+    }, [])
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
-    }, [data]);
+        return array;
+    }
 
-    console.log(data)
-    console.log(wrongAnswer)
-    console.log(rightAnswer)
+    function checkAnswer(value) {
+        console.log(value)
+    }
+
+
     return <>
         <div className="flex flex-col">
             <div>
                 <h1 className="font-medium">Вопрос: {data && data.question}</h1>
-                <div>
-                    {wrongAnswer && wrongAnswer.map(item => (
-                        <button
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl m-10"
-                            key={item.id}>{item.answer}</button>
-                    ))}
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-xl font-bold py-2 px-4  m-10"
-                            key={Date.now()}>{rightAnswer && rightAnswer.answer}</button>
-                </div>
-
+                <ul>
+                    <li>
+                        {data && data.answers.map((item, index) => (
+                            <button onClick={checkAnswer} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl m-10" key={index}>{item}</button>
+                        ))}
+                    </li>
+                </ul>
             </div>
             <button onClick={() => navigate(-1)}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-10">
