@@ -33,7 +33,7 @@ export default function Question() {
         }
     };
 
-    const active = 'bg-blue-500 text-white font-bold bg-gradient-to-r from-indigo-500 via-purple-500 py-2 px-4 rounded-xl m-10  lg:hover:animate-pulse animate-ease-in text-3xl'
+    const active = 'bg-blue-500 text-white font-bold bg-gradient-to-r from-indigo-500 via-purple-500 py-2 px-4 rounded-xl m-10  lg:hover:animate-wiggle animate-ease-in text-3xl'
     const inActive = 'bg-blue-500 text-white font-bold bg-gradient-to-tl from-pink-500 via-red-500 to-yellow-500 py-2 px-4 rounded-xl m-10 animate-ease-in text-3xl transition-all animate-fade animate-once animate-duration-1000 animate-ease-in-out animate-reverse'
 
     useEffect(() => {
