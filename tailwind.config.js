@@ -12,6 +12,7 @@ export default {
     require('@tailwindcss/forms'),
     // eslint-disable-next-line no-undef
     require('@tailwindcss/aspect-ratio'),
+    require('tailwindcss-animated')
     // ...
   ],
 }

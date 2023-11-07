@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-spring/web": "^9.7.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "axios": "^1.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0"
+    "react-router-dom": "^6.16.0",
+    "react-spinners": "^0.13.8"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.6",
@@ -29,6 +31,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "postcss": "^8.4.30",
     "tailwindcss": "^3.3.3",
+    "tailwindcss-animated": "^1.0.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }
