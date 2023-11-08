@@ -5,7 +5,7 @@ import icon from '../assets/logo-no-background.svg'
 
 export default function Login() {
     const [isActive, setIsActive] = useState(false);
-    const [errors, setErrors] = useState(Array)
+    const [errors, setErrors] = useState([])
 
     const errorElements = errors.map((item, index) => (
         <li key={index}>{item as ReactNode}</li>

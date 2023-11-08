@@ -5,7 +5,7 @@ import {FormEvent, ReactNode, useState} from "react";
 
 export default function Register() {
     const [isActive, setIsActive] = useState(false);
-    const [errors, setErrors] = useState(Array)
+    const [errors, setErrors] = useState([])
 
     const errorElements = errors.map((item, index) => (
         <li key={index}>{item as ReactNode}</li>
