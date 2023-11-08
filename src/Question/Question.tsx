@@ -53,19 +53,27 @@ export default function Question() {
     }, [])
 
     console.log(level)
-    // @ts-ignore
-    return (isLoading ? (<div className="absolute bottom-0 left-0 right-0 top-0 grid place-items-center animate-fade">
-        <CircleLoader color="#3498db" size={100}/>
-    </div>) : (
+
+    let element = isLoading ? (
+        <div className="absolute bottom-0 left-0 right-0 top-0 grid place-items-center animate-fade">
+            <CircleLoader color="#3498db" size={100}/>
+        </div>) : (
         <div className="flex flex-col m-12 content-center items-center">
             <div>
-                <h1 className="font-medium text-3xl">Вопрос: {data && data.question}</h1>
+                <h1 className="font-medium text-3xl">Вопрос: {
+                    // @ts-ignore
+                    data && data.question
+                }</h1>
 
                 <ul>
                     <li>
-                        {data && data.answers.map((item: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined, index: Key | null | undefined) => (
+                        {    // @ts-ignore
+                            data && data.answers.map((item: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined, index: Key | null | undefined) => (
                             <button onClick={() => handleClick({value: item, index: index})}
-                                    className={activeButtons.includes(index) ? inActive : active}
+                                    className={
+                                        // @ts-ignore
+                                activeButtons.includes(index) ? inActive : active
+                            }
                                     key={index}>{item}</button>
                         ))}
                     </li>
@@ -73,10 +81,12 @@ export default function Question() {
 
                 <h1 className={"text-9xl font-bold text-red-400 animate-spin animate-infinite animate-duration-[2500ms] animate-ease-in animate-reverse"}>?</h1>
             </div>
-            <button onClick={() => window.location.href = `/level/${level.id}`}
+            <button onClick={() => window.location.href = `/level/${    // @ts-ignore
+                level.id}`}
                     className="bg-blue-500 w-40  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-10">
                 Назад
             </button>
         </div>
-    ))
+    );
+    return element
 }
