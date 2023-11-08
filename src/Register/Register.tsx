@@ -34,7 +34,7 @@ export default function Register() {
                     temp.push(i)
                 })
             })
-
+            // @ts-ignore
             setErrors(temp)
 
             setIsActive(true)
