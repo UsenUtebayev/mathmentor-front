@@ -28,7 +28,8 @@ export default function Register() {
                 }
             )
         } catch (e: any) {
-            let temp: any[] = []
+            // @ts-ignore
+            let temp = []
             Object.keys(e.response.data).forEach((element) => {
                 e.response.data[element].forEach((i: string) => {
                     temp.push(i)
