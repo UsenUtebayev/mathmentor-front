@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {apiUrl} from "../constants.ts";
-import {CircleLoader, PacmanLoader} from 'react-spinners';
+import {CircleLoader} from 'react-spinners';
 
 export default function Home() {
     const navigate = useNavigate();

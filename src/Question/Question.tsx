@@ -1,33 +1,37 @@
-import {useNavigate, useParams} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+import {JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useState} from "react";
 import axios from "axios";
 import {apiUrl} from "../constants.ts";
 import {CircleLoader} from "react-spinners";
 
 export default function Question() {
-    const navigate = useNavigate();
     const [data, setData] = useState()
     const {id} = useParams()
     const [isLoading, setIsLoading] = useState(true)
     const [activeButtons, setActiveButtons] = useState([]);
     const [level, setLevel] = useState({})
-    const handleClick = (value, index) => {
+    const handleClick = ({value, index}: { value: any, index: any }) => {
+        // @ts-ignore
         if (value == data.right_answer) {
 
+            // @ts-ignore
             let temp: Array<any> = JSON.parse(localStorage.getItem('getted_levels'))
+            // @ts-ignore
             if (data.pk in temp) {
 
             } else {
+                // @ts-ignore
                 temp.push(data.pk + 1)
                 localStorage.setItem('getted_levels', JSON.stringify(temp))
             }
 
+            // @ts-ignore
             window.location.href = `/level/question/${+id + 1}`;
 
-        }
-        else {
+        } else {
             const newActiveButtons = [...activeButtons];
 
+            // @ts-ignore
             newActiveButtons.push(index);
             setActiveButtons(newActiveButtons);
         }
@@ -49,17 +53,18 @@ export default function Question() {
     }, [])
 
     console.log(level)
+    // @ts-ignore
     return (isLoading ? (<div className="absolute bottom-0 left-0 right-0 top-0 grid place-items-center animate-fade">
         <CircleLoader color="#3498db" size={100}/>
-    </div>) :(
+    </div>) : (
         <div className="flex flex-col m-12 content-center items-center">
-            <div >
+            <div>
                 <h1 className="font-medium text-3xl">Вопрос: {data && data.question}</h1>
 
-                <ul >
+                <ul>
                     <li>
-                        {data && data.answers.map((item, index) => (
-                            <button onClick={() => handleClick(item, index)}
+                        {data && data.answers.map((item: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined, index: Key | null | undefined) => (
+                            <button onClick={() => handleClick({value: item, index: index})}
                                     className={activeButtons.includes(index) ? inActive : active}
                                     key={index}>{item}</button>
                         ))}
