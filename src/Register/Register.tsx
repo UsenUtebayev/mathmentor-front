@@ -1,11 +1,11 @@
 import axios from "axios";
-import {authUrl} from '../constants.ts'
+import {api, authUrl} from '../constants.ts'
 import icon from '../assets/logo-no-background.svg'
 import {FormEvent, ReactNode, useState} from "react";
 
 export default function Register() {
     const [isActive, setIsActive] = useState(false);
-    const [errors, setErrors] = useState<string[]>([])
+    const [errors, setErrors] = useState([])
 
     const errorElements = errors.map((item, index) => (
         <li key={index}>{item as ReactNode}</li>
@@ -17,7 +17,7 @@ export default function Register() {
         const formData = new FormData(event.currentTarget)
 
         try {
-            await axios.post(`${authUrl}/auth/users/`, {
+            await api.post(`${authUrl}/auth/users/`, {
                 "username": formData.get("username"),
                 "password": formData.get("password"),
                 "confirm-password": formData.get("confirm-password")
@@ -34,9 +34,8 @@ export default function Register() {
                     temp.push(i)
                 })
             })
-            // @ts-ignore
             setErrors(temp)
-
+                //
             setIsActive(true)
         }
 

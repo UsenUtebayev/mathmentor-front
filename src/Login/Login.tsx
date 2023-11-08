@@ -1,12 +1,11 @@
 import {FormEvent, ReactNode, useState} from "react";
 import axios from "axios";
-import {authUrl} from '../constants.ts'
+import {api, authUrl} from '../constants.ts'
 import icon from '../assets/logo-no-background.svg'
 
 export default function Login() {
     const [isActive, setIsActive] = useState(false);
     const [errors, setErrors] = useState([])
-
     const errorElements = errors.map((item, index) => (
         <li key={index}>{item as ReactNode}</li>
     ));
@@ -17,7 +16,7 @@ export default function Login() {
         const formData = new FormData(event.currentTarget)
 
         try {
-            await axios.post(`${authUrl}/auth/token/login/`, {
+            await api.post(`${authUrl}/auth/token/login/`, {
                 "username": formData.get("username"),
                 "password": formData.get("password")
             }).then(
