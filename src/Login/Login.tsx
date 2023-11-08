@@ -1,5 +1,4 @@
 import {FormEvent, ReactNode, useState} from "react";
-import axios from "axios";
 import {api, authUrl} from '../constants.ts'
 import icon from '../assets/logo-no-background.svg'
 
@@ -33,6 +32,7 @@ export default function Login() {
                     temp.push(i)
                 })
             })
+            // @ts-ignore
             setErrors(temp)
             setIsActive(true)
         }
