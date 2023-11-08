@@ -1,7 +1,7 @@
 import axios from "axios";
 import {authUrl} from '../constants.ts'
 import icon from '../assets/logo-no-background.svg'
-import {FormEvent, ReactNode, SetStateAction, useState} from "react";
+import {FormEvent, ReactNode, useState} from "react";
 
 export default function Register() {
     const [isActive, setIsActive] = useState(false);
