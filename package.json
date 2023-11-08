@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
-  },
+  },  
   "dependencies": {
     "@react-spring/web": "^9.7.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",

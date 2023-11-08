@@ -1,2 +1,2 @@
-export const authUrl = 'http://localhost:8000'
-export const apiUrl = 'http://localhost:8000/api/v1'
+export const authUrl = 'http://195.49.215.125/'
+export const apiUrl = 'http://195.49.215.125/api/v1'
