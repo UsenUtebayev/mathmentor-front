@@ -1,11 +1,11 @@
 import axios from "axios";
 import {authUrl} from '../constants.ts'
 import icon from '../assets/logo-no-background.svg'
-import {FormEvent, ReactNode, useState} from "react";
+import {FormEvent, ReactNode, SetStateAction, useState} from "react";
 
 export default function Register() {
     const [isActive, setIsActive] = useState(false);
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState<string[]>([])
 
     const errorElements = errors.map((item, index) => (
         <li key={index}>{item as ReactNode}</li>
@@ -28,15 +28,13 @@ export default function Register() {
                 }
             )
         } catch (e: any) {
-            // @ts-ignore
-            let temp = []
+            let temp: string[] = []
             Object.keys(e.response.data).forEach((element) => {
                 e.response.data[element].forEach((i: string) => {
                     temp.push(i)
                 })
             })
 
-            // @ts-ignore
             setErrors(temp)
 
             setIsActive(true)
